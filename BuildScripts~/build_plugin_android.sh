@@ -5,8 +5,8 @@ export SOLUTION_DIR=$(pwd)/Plugin~
 export PLUGIN_DIR=$(pwd)/Runtime/Plugins/Android
 
 # Download LibWebRTC 
-curl -L $LIBWEBRTC_DOWNLOAD_URL > webrtc.zip
-unzip -d $SOLUTION_DIR/webrtc webrtc.zip 
+curl -LOC - $LIBWEBRTC_DOWNLOAD_URL
+unzip -o -d $SOLUTION_DIR/webrtc webrtc-android.zip  
 cp -f $SOLUTION_DIR/webrtc/lib/libwebrtc.aar $PLUGIN_DIR
 
 # Build UnityRenderStreaming Plugin 
@@ -21,6 +21,7 @@ do
     -D CMAKE_ANDROID_ARCH_ABI=$ARCH_ABI \
     -D CMAKE_ANDROID_NDK=$ANDROID_NDK \
     -D CMAKE_BUILD_TYPE=Release \
+    -D CMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -D CMAKE_ANDROID_STL_TYPE=c++_static
 
   cmake \
