@@ -246,9 +246,10 @@ namespace webrtc
     {
         // avoid optimization specially for voice
         cricket::AudioOptions audioOptions;
-        audioOptions.auto_gain_control = false;
-        audioOptions.noise_suppression = false;
-        audioOptions.highpass_filter = false;
+        audioOptions.auto_gain_control = true;
+        audioOptions.noise_suppression = true;
+        audioOptions.highpass_filter = true;
+        audioOptions.echo_cancellation = true;
         return UnityAudioTrackSource::Create(audioOptions);
     }
 
